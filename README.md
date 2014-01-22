@@ -1,8 +1,8 @@
-# Dummy Users 
- 
-##Learning Competencies 
+# Dummy Users
 
-##Summary 
+##Learning Competencies
+
+##Summary
 
  We're going to build a toy application that explores user authentication.  It won't do anything other than let people sign up for an account, log in with that account, and display a special "users-only" page for logged-in users.
 
@@ -73,11 +73,11 @@ A user should be authorized to see the secret page only if they're logged in.  W
 
 One way is to use a [before filter](http://www.sinatrarb.com/intro#Filters).  **Note**: This not the only way, or even necessarily the best way in this case.  But it's one tool to implement this kind of pre-route logic.
 
-For an app this simple, it's ok to put it in the route itself. 
+For an app this simple, it's ok to put it in the route itself.
 
 ##Releases
-###Release 0 
+###Release 0
 
-##Optimize Your Learning 
+##Optimize Your Learning
 
 ##Resources
