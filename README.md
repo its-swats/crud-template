@@ -1,8 +1,8 @@
 # Dummy Users
 
-##Learning Competencies
+## Learning Competencies
 
-##Summary
+## Summary
 
  We're going to build a toy application that explores user authentication.  It won't do anything other than let people sign up for an account, log in with that account, and display a special "users-only" page for logged-in users.
 
@@ -75,9 +75,9 @@ One way is to use a [before filter](http://www.sinatrarb.com/intro#Filters).  **
 
 For an app this simple, it's ok to put it in the route itself.
 
-##Releases
-###Release 0
+## Releases
+### Release 0
 
-##Optimize Your Learning
+## Optimize Your Learning
 
-##Resources
+## Resources
