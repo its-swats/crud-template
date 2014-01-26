@@ -3,7 +3,7 @@
 ## Learning Competencies
 
 * Implement secure authentication in a web application
-* Understand sessions and HTTP cookies as work-arounds for HTTP statelessness
+* Use sessions and HTTP cookies to implement state and work around HTTP statelessness
 
 ## Summary
 
