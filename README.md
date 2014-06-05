@@ -22,8 +22,6 @@ data using [HTTP cookies][].
 
 ### Release 0: Determine Your Routes
 
-Feel free to use the basic Sinatra skeleton in `./source`.
-
 We only have one model, `User`, so let's focus on our controllers for a bit.  We need to support a few core actions:
 
 1. Logging in
