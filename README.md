@@ -1,24 +1,21 @@
-# Dummy Users
-
-## Learning Competencies
-
-* Implement secure authentication in a web application
-* Use sessions and HTTP cookies to implement state and work around HTTP statelessness
+# User Registration and Authentication
 
 ## Summary
+In this challenge we're going to build a toy application that explores user registration and authentication.  To begin, our application will be limited to allowing users to register for our site and afterward login and logout.  Once our application has this functionality, we'll look at filtering—allowing logged in users access to content that guests cannot access.
 
-We're going to build a toy application that explores user authentication.  It
-won't do anything other than let people sign up for an account, log in with
-that account, and display a special "users-only" page for logged-in users.
 
-The application will have only one model: `User`.
+### Working with Sessions
+In the vanilla world of HTTP, our web applications don't recognize when two requests come from the same browser; they treat each request the same way.  In this challenge, we'll learn to use [sessions][] in Sinatra, which store
+data using [HTTP cookies][].  We use cookies to retain state across web requests—in this challenge, we'll use them so that our application recognize that a user is logged in.
 
-The goal is to learn about how to retain state across web requests.  In the
-vanilla world of HTTP, your web app doesn't "know" that two requests came from
-the same browser.  This will require using [sessions][] in Sinatra, which store
-data using [HTTP cookies][].
+
+### Protecting User Data
+When users sign up to use our application, they will be trusting us with their data:  names, e-mail addresses, passwords.  We want to do everything we can to protect them in case our database is compromised.  We should never store a user's plain-text password in our database.
+
 
 ## Releases
+
+Our application will have only one model: `User`.  
 
 ### Release 0: Determine Your Routes
 
