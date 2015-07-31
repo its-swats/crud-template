@@ -13,10 +13,17 @@ data using [HTTP cookies][].  We use cookies to retain state across web requests
 When users sign up to use our application, they will be trusting us with their data:  names, e-mail addresses, passwords.  We want to do everything we can to protect our users in case our database is compromised.  We should never store a user's plain-text password in our database.
 
 
+### Application Description
+Our application will have only one model: `User`.  We'll work with our user model to build an application that supports a few core actions:
+
+- User registeration (i.e., creating an account)
+- Login
+- Logout
+
+Once this functionality is built, then we'll begin to restrict access to our application to logged in users.  In other words, when a user attempts to see a page in our application, they will be redirected to the login page, unless they have already been logged in.
+
+
 ## Releases
-
-Our application will have only one model: `User`.  
-
 ### Release 0: Determine Your Routes
 
 We only have one model, `User`, so let's focus on our controllers for a bit.  We need to support a few core actions:
