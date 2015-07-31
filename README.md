@@ -22,6 +22,8 @@ Our application will have only one model: `User`.  We'll work with our user mode
 
 Once this functionality is built, then we'll begin to restrict access to our application to logged in users.  In other words, when a user attempts to see a page in our application, they will be redirected to the login page, unless they have already been logged in.
 
+As we build our application, we'll need to make decisions about the routes that we need and the types of request the browser should make (e.g., get, post, etc.).
+
 
 ## Releases
 ### Release 0: Determine Your Routes
