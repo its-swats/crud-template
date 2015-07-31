@@ -62,9 +62,8 @@ If the `session` hash and/or how to use it is unclear, read the [using sessions 
 
 
 ### Release 3:  Implement Logging Out
+If users can login, we'll also want to allow them to logout.  Implement a controller method that will log a user out when they visit it.  This will most likely involve deleting some content from the `session` hash.
 
-Implement a controller method that will log a user out when they visit it.
-This will most likely involve deleting some content from the `session` hash.
 
 ### Authorization
 
