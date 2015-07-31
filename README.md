@@ -61,20 +61,6 @@ Now, let's actually implement logging in by allowing users to submit their login
 If the `session` hash and/or how to use it is unclear, read the [using sessions section][using sessions] of the Sinatra documentation.  If it is still unclear after reading the documentation, ask for help from a staff member.
 
 
-### Release 1:  Get an Expert&trade; Opinion
-
-Once you've designed the schema for `users` and implemented the
-`User.authenticate` method, bring a staff member over and have them review your
-schema.  How user authentication works, what's secure and what's not, are one
-of the most basic bits of web development.  It will be much easier to
-understand if you've implemented it on your own once, even if your first try
-wasn't secure.
-
-Refactor your code according to the advice of the staff.
-
-### Release 2:  Implement Logging In
-
-
 ### Release 3:  Implement Logging Out
 
 Implement a controller method that will log a user out when they visit it.
