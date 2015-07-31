@@ -40,13 +40,8 @@ When a user registers with our site, we'll need to persist the information that 
 *Note:*  When users later return to our site and login, they will submit their email address and password.
 
 
-
-
-How do we know whether they
-submitted the correct password or not?
-
-Design a `users` schema and add a method to the `User` model that works as
-follows:
+### Release 1:  Implement User Login
+When users register for our site, we'll want them to be able to later return to our site and login using the details that they provided when registering—specifically, the e-mail address and password.  How will our application determine whether or not the user supplied a correct e-mail and password combination?
 
 ```ruby
 class User < ActiveRecord::Base
@@ -57,6 +52,14 @@ class User < ActiveRecord::Base
   end
 end
 ```
+*Figure 1*.  Shell code for an authenticate method.
+
+We'll add an `.authenticate` method to our `User` model to make this determination.  Figure 1 provides some shell code and pseudocode for our method.
+
+Now, let's actually implement logging in by allowing users to submit their login credentials as a post request to a `/login` URL.  If the user sends a valid email and password combination, we'll log the user in.  We'll "remember" that the user is logged in by storing data in the `session` hash.
+
+If the `session` hash and/or how to use it is unclear, read the [using sessions section][using sessions] of the Sinatra documentation.  If it is still unclear after reading the documentation, ask for help from a staff member.
+
 
 ### Release 1:  Get an Expert&trade; Opinion
 
@@ -71,14 +74,6 @@ Refactor your code according to the advice of the staff.
 
 ### Release 2:  Implement Logging In
 
-Now implement logging in by POSTing to a `/login` URL with the user's email and
-password.  If the user sent a valid email and password, store what data you
-need to "remember" the user in the `session` Hash.
-
-If you don't understand what this means, first read the [using sessions
-section][using sessions] of the Sintra documentation.  Next, ask for help from
-a staff member if it's still unclear what you need to store and how you store
-it.
 
 ### Release 3:  Implement Logging Out
 
