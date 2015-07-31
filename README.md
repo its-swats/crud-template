@@ -75,12 +75,9 @@ What is our content?  We're practicing authorization, so let's just create a "se
 One way to restrict access to authorized users is a [before filter][].  This not the only way to accomplish this and not necessarily the best way in this case.  But it's one tool to implement this kind of pre-route logic.  For an application this simple, it's ok to put the authorization logic in the route handler itself.
 
 
-## Resources
+## Conclusion
+Think about the apps we use everyday:  Twitter, Instagram, GitHub, etc.  User registration, authentication, and authorization are key aspects in these applications.  These are skills that you must have.  Moving forward at Dev Bootcamp we'll be building user authentication into our applications.
 
-* [Sinatra sessions][sessions]
-* [HTTP cookies][]
-* [Sinatra sessions][using sessions]
-* [Sinatra before filter][before filter]
 
 [sessions]: http://www.sinatrarb.com/faq.html#sessions
 [HTTP cookies]: http://en.wikipedia.org/wiki/HTTP_cookie
