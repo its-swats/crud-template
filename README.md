@@ -65,21 +65,15 @@ If the `session` hash and/or how to use it is unclear, read the [using sessions 
 If users can login, we'll also want to allow them to logout.  Implement a controller method that will log a user out when they visit it.  This will most likely involve deleting some content from the `session` hash.
 
 
-### Authorization
+### Release 4:  Implement Authorization
+To this point, we've been dealing with *authentication*:  answering the question, "Who are you?"  Now we're going to handle *authorization*:  answering the question, "What do you have permission to do?"
 
-**Authentication** is the processes of answering the question, "Who are you?"
-**Authorization** is the process of answering the question, "What do you have
-permission to do?"
+In applications there are different use cases for authorization.  For example, an application might have a group of administrators with special privileges.  Perhaps they can edit content, delete posts, etc., while other users cannot.  In our application, we'll authorize all logged in users to view the content of our site.  If users have not logged in, they will not be authorized to view the content.
 
-A user should be authorized to see the secret page only if they're logged in.
-Write code that redirects a user back to the login page if they try to access
-the secret page when they're not logged in.
+What is our content?  We're practicing authorization, so let's just create a "secret" page.  Users should be authorized to see the secret page only if they're logged in.  If users try to access the secret page when they're not logged in, they should be redirected to the login page.
 
-One way is to use a [before filter][].
-**Note**: This not the only way, or even necessarily the best way in this case.
-But it's one tool to implement this kind of pre-route logic.
+One way to restrict access to authorized users is a [before filter][].  This not the only way to accomplish this and not necessarily the best way in this case.  But it's one tool to implement this kind of pre-route logic.  For an application this simple, it's ok to put the authorization logic in the route handler itself.
 
-For an app this simple, it's ok to put it in the route itself.
 
 ## Resources
 
