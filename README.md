@@ -26,27 +26,23 @@ As we build our application, we'll need to make decisions about the routes that 
 
 
 ## Releases
-### Release 0: Determine Your Routes
+### Release 0:  User Registration
+The first feature that we're going to add to our application is user registration; when users visit our site, they should be able to create accounts.
 
-We only have one model, `User`, so let's focus on our controllers for a bit.  We need to support a few core actions:
+Users will need to provide us with some information.  We'll keep things simple and only require some basics:
 
-1. Logging in
-2. Logging out
-3. Creating an account
-4. Viewing the secret page
-5. Redirecting a user back to the "log in" screen if they try to view the
-   secret page without being logged in
+- full name
+- email address
+- password 
 
-There should be four routes involved.  Why?  Which ones are POST requests,
-which ones are GET requests.  Why?
+When a user registers with our site, we'll need to persist the information that they provide to us in our database (i.e., save the new user in the database).  What data should we keep in our database?  How should we store it?  Remember, we should not store a user's plain-text password.  What constraints should we have in our database and validations in our models?  What would happen if two users registered with the same e-mail address?  Or, if a user did not supply an e-mail address?
 
-### Create an Account
+*Note:*  When users later return to our site and login, they will submit their email address and password.
 
-Start by creating the behavior to create an account.  When signing up, I should
-enter my full name, my email, and a password.
 
-What fields should there be in the `users` table?  A user will be logging in by
-submitting their email and password somewhere.  How do we know whether they
+
+
+How do we know whether they
 submitted the correct password or not?
 
 Design a `users` schema and add a method to the `User` model that works as
