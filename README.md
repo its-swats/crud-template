@@ -10,7 +10,7 @@ data using [HTTP cookies][].  We use cookies to retain state across web requests
 
 
 ### Protecting User Data
-When users sign up to use our application, they will be trusting us with their data:  names, e-mail addresses, passwords.  We want to do everything we can to protect them in case our database is compromised.  We should never store a user's plain-text password in our database.
+When users sign up to use our application, they will be trusting us with their data:  names, e-mail addresses, passwords.  We want to do everything we can to protect our users in case our database is compromised.  We should never store a user's plain-text password in our database.
 
 
 ## Releases
