@@ -26,7 +26,7 @@ As we build our application, we'll need to make decisions about the routes that 
 
 
 ## Releases
-### Release 0:  User Registration
+### Release 0:  Implement User Registration
 The first feature that we're going to add to our application is user registration; when users visit our site, they should be able to create accounts.
 
 Users will need to provide us with some information.  We'll keep things simple and only require some basics:
