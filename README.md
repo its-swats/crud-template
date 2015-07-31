@@ -1,12 +1,12 @@
 # User Registration and Authentication
 
 ## Summary
-In this challenge we're going to build a toy application that explores user registration and authentication.  To begin, our application will be limited to allowing users to register for our site and afterward login and logout.  Once our application has this functionality, we'll look at filtering—allowing logged in users access to content that guests cannot access.
+In this challenge we're going to build a toy application that explores user registration and authentication.  To begin, our application will be limited to allowing users to register for our site and afterward login and logout.  Once our application has this functionality, we'll look at authorization—allowing logged in users access to content that guests cannot access.
 
 
 ### Working with Sessions
 In the vanilla world of HTTP, our web applications don't recognize when two requests come from the same browser; they treat each request the same way.  In this challenge, we'll learn to use [sessions][] in Sinatra, which store
-data using [HTTP cookies][].  We use cookies to retain state across web requests—in this challenge, we'll use them so that our application recognize that a user is logged in.
+data using [HTTP cookies][].  We use cookies to retain state across web requests—in this challenge, we'll use them so that our application recognizes that a user is logged in.
 
 
 ### Protecting User Data
@@ -20,7 +20,7 @@ Our application will have only one model: `User`.  We'll work with our user mode
 - Login
 - Logout
 
-Once this functionality is built, then we'll begin to restrict access to our application to logged in users.  In other words, when a user attempts to see a page in our application, they will be redirected to the login page, unless they have already been logged in.
+Once this functionality is built, we'll begin to restrict access to our application to logged in users.  In other words, when a user attempts to see a page in our application, they will be redirected to the login page, unless they have already been logged in.
 
 As we build our application, we'll need to make decisions about the routes that we need and the types of request the browser should make (e.g., get, post, etc.).
 
@@ -37,7 +37,7 @@ Users will need to provide us with some information.  We'll keep things simple a
 
 When a user registers with our site, we'll need to persist the information that they provide to us in our database (i.e., save the new user in the database).  What data should we keep in our database?  How should we store it?  Remember, we should not store a user's plain-text password.  What constraints should we have in our database and validations in our models?  What would happen if two users registered with the same e-mail address?  Or, if a user did not supply an e-mail address?
 
-*Note:*  When users later return to our site and login, they will submit their email address and password.
+*Note:*  When users later return to our site and attempt to login, they will submit an email address and password.
 
 
 ### Release 1:  Implement User Login
