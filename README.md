@@ -76,7 +76,7 @@ One way to restrict access to authorized users is a [before filter][].  This not
 
 
 ## Conclusion
-Think about the apps we use everyday:  Twitter, Instagram, GitHub, etc.  User registration, authentication, and authorization are key aspects in these applications.  These are skills that you must have.  Moving forward at Dev Bootcamp we'll be building user authentication into our applications.
+Think about the apps we use everyday:  Twitter, Instagram, GitHub, etc.  User registration, authentication, and authorization are key aspects in these applications.  These are skills that we must have.  We've gotten an introduction to these concepts in this challenge.  Moving forward at Dev Bootcamp we'll receive more practice, as we'll be building user authentication into our applications.
 
 
 [sessions]: http://www.sinatrarb.com/faq.html#sessions
