@@ -16,7 +16,7 @@ When users sign up to use our application, they will be trusting us with their d
 ### Application Description
 Our application will have only one model: `User`.  We'll work with our user model to build an application that supports a few core actions:
 
-- User registeration (i.e., creating an account)
+- User registration (i.e., creating an account)
 - Login
 - Logout
 
