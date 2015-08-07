@@ -12,6 +12,8 @@ data using [HTTP cookies][].  We use cookies to retain state across web requests
 ### Protecting User Data
 When users sign up to use our application, they will be trusting us with their data:  names, e-mail addresses, passwords.  We want to do everything we can to protect our users in case our database is compromised.  We should never store a user's plain-text password in our database.
 
+How do we securely store users' passwords while allowing users to sign in with their plain-text passwords?  One option is to use a [hashing algorithm](https://en.wikipedia.org/wiki/Cryptographic_hash_function) and store the hashed versions of users' passwords in our database.  One such hashing algorithm is [bcrypt](https://en.wikipedia.org/wiki/Bcrypt), for which there is a [Ruby gem](https://github.com/codahale/bcrypt-ruby).
+
 
 ### Application Description
 Our application will have only one model: `User`.  We'll work with our user model to build an application that supports a few core actions:
