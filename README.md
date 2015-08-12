@@ -24,7 +24,7 @@ Our application will have only one model: `User`.  We'll work with our user mode
 
 Once this functionality is built, we'll begin to restrict access to our application to logged in users.  In other words, when a user attempts to see a page in our application, they will be redirected to the login page, unless they have already been logged in.
 
-As we build our application, we'll need to make decisions about the routes that we need and the types of request the browser should make (e.g., get, post, etc.).
+As we build our application, we'll need to make decisions about the routes that we need and the types of requests the browser should make (e.g., get, post, etc.).
 
 
 ## Releases
@@ -35,7 +35,7 @@ Users will need to provide us with some information.  We'll keep things simple a
 
 - full name
 - email address
-- password 
+- password
 
 When a user registers with our site, we'll need to persist the information that they provide to us in our database (i.e., save the new user in the database).  What data should we keep in our database?  How should we store it?  Remember, we should not store a user's plain-text password.  What constraints should we have in our database and validations in our models?  What would happen if two users registered with the same e-mail address?  Or, if a user did not supply an e-mail address?
 
