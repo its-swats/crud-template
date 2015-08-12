@@ -1,50 +1,49 @@
-# Dummy Users
-
-## Learning Competencies
-
-* Implement secure authentication in a web application
-* Use sessions and HTTP cookies to implement state and work around HTTP statelessness
+# User Registration and Authentication
 
 ## Summary
+In this challenge we're going to build a toy application that explores user registration and authentication.  To begin, our application will be limited to allowing users to register for our site and afterward login and logout.  Once our application has this functionality, we'll look at authorization—allowing logged in users access to content that guests cannot access.
 
-We're going to build a toy application that explores user authentication.  It
-won't do anything other than let people sign up for an account, log in with
-that account, and display a special "users-only" page for logged-in users.
 
-The application will have only one model: `User`.
+### Working with Sessions
+In the vanilla world of HTTP, our web applications don't recognize when two requests come from the same browser; they treat each request the same way.  In this challenge, we'll learn to use [sessions][] in Sinatra, which store
+data using [HTTP cookies][].  We use cookies to retain state across web requests—in this challenge, we'll use them so that our application recognizes that a user is logged in.
 
-The goal is to learn about how to retain state across web requests.  In the
-vanilla world of HTTP, your web app doesn't "know" that two requests came from
-the same browser.  This will require using [sessions][] in Sinatra, which store
-data using [HTTP cookies][].
+
+### Protecting User Data
+When users sign up to use our application, they will be trusting us with their data:  names, e-mail addresses, passwords.  We want to do everything we can to protect our users in case our database is compromised.  We should never store a user's plain-text password in our database.
+
+How do we securely store users' passwords while allowing users to sign in with their plain-text passwords?  One option is to use a [hashing algorithm](https://en.wikipedia.org/wiki/Cryptographic_hash_function) and store the hashed versions of users' passwords in our database.  One such hashing algorithm is [bcrypt](https://en.wikipedia.org/wiki/Bcrypt), for which there is a [Ruby gem](https://github.com/codahale/bcrypt-ruby).
+
+
+### Application Description
+Our application will have only one model: `User`.  We'll work with our user model to build an application that supports a few core actions:
+
+- User registration (i.e., creating an account)
+- Login
+- Logout
+
+Once this functionality is built, we'll begin to restrict access to our application to logged in users.  In other words, when a user attempts to see a page in our application, they will be redirected to the login page, unless they have already been logged in.
+
+As we build our application, we'll need to make decisions about the routes that we need and the types of requests the browser should make (e.g., get, post, etc.).
+
 
 ## Releases
+### Release 0:  Implement User Registration
+The first feature that we're going to add to our application is user registration; when users visit our site, they should be able to create accounts.
 
-### Release 0: Determine Your Routes
+Users will need to provide us with some information.  We'll keep things simple and only require some basics:
 
-We only have one model, `User`, so let's focus on our controllers for a bit.  We need to support a few core actions:
+- full name
+- email address
+- password
 
-1. Logging in
-2. Logging out
-3. Creating an account
-4. Viewing the secret page
-5. Redirecting a user back to the "log in" screen if they try to view the
-   secret page without being logged in
+When a user registers with our site, we'll need to persist the information that they provide to us in our database (i.e., save the new user in the database).  What data should we keep in our database?  How should we store it?  Remember, we should not store a user's plain-text password.  What constraints should we have in our database and validations in our models?  What would happen if two users registered with the same e-mail address?  Or, if a user did not supply an e-mail address?
 
-There should be four routes involved.  Why?  Which ones are POST requests,
-which ones are GET requests.  Why?
+*Note:*  When users later return to our site and attempt to login, they will submit an email address and password.
 
-### Create an Account
 
-Start by creating the behavior to create an account.  When signing up, I should
-enter my full name, my email, and a password.
-
-What fields should there be in the `users` table?  A user will be logging in by
-submitting their email and password somewhere.  How do we know whether they
-submitted the correct password or not?
-
-Design a `users` schema and add a method to the `User` model that works as
-follows:
+### Release 1:  Implement User Login
+When users register for our site, we'll want them to be able to later return to our site and login using the details that they provided when registering—specifically, the e-mail address and password.  How will our application determine whether or not the user supplied a correct e-mail and password combination?
 
 ```ruby
 class User < ActiveRecord::Base
@@ -55,56 +54,32 @@ class User < ActiveRecord::Base
   end
 end
 ```
+*Figure 1*.  Shell code for an authenticate method.
 
-### Release 1:  Get an Expert&trade; Opinion
+We'll add an `.authenticate` method to our `User` model to make this determination.  Figure 1 provides some shell code and pseudocode for our method.
 
-Once you've designed the schema for `users` and implemented the
-`User.authenticate` method, bring a staff member over and have them review your
-schema.  How user authentication works, what's secure and what's not, are one
-of the most basic bits of web development.  It will be much easier to
-understand if you've implemented it on your own once, even if your first try
-wasn't secure.
+Now, let's actually implement logging in by allowing users to submit their login credentials as a post request to a `/login` URL.  If the user sends a valid email and password combination, we'll log the user in.  We'll "remember" that the user is logged in by storing data in the `session` hash.
 
-Refactor your code according to the advice of the staff.
+If the `session` hash and/or how to use it is unclear, read the [using sessions section][using sessions] of the Sinatra documentation.  If it is still unclear after reading the documentation, ask for help from a staff member.
 
-### Release 2:  Implement Logging In
-
-Now implement logging in by POSTing to a `/login` URL with the user's email and
-password.  If the user sent a valid email and password, store what data you
-need to "remember" the user in the `session` Hash.
-
-If you don't understand what this means, first read the [using sessions
-section][using sessions] of the Sintra documentation.  Next, ask for help from
-a staff member if it's still unclear what you need to store and how you store
-it.
 
 ### Release 3:  Implement Logging Out
+If users can login, we'll also want to allow them to logout.  Implement a controller method that will log a user out when they visit it.  This will most likely involve deleting some content from the `session` hash.
 
-Implement a controller method that will log a user out when they visit it.
-This will most likely involve deleting some content from the `session` hash.
 
-### Authorization
+### Release 4:  Implement Authorization
+To this point, we've been dealing with *authentication*:  answering the question, "Who are you?"  Now we're going to handle *authorization*:  answering the question, "What do you have permission to do?"
 
-**Authentication** is the processes of answering the question, "Who are you?"
-**Authorization** is the process of answering the question, "What do you have
-permission to do?"
+In applications there are different use cases for authorization.  For example, an application might have a group of administrators with special privileges.  Perhaps they can edit content, delete posts, etc., while other users cannot.  In our application, we'll authorize all logged in users to view the content of our site.  If users have not logged in, they will not be authorized to view the content.
 
-A user should be authorized to see the secret page only if they're logged in.
-Write code that redirects a user back to the login page if they try to access
-the secret page when they're not logged in.
+What is our content?  We're practicing authorization, so let's just create a "secret" page.  Users should be authorized to see the secret page only if they're logged in.  If users try to access the secret page when they're not logged in, they should be redirected to the login page.
 
-One way is to use a [before filter][].
-**Note**: This not the only way, or even necessarily the best way in this case.
-But it's one tool to implement this kind of pre-route logic.
+One way to restrict access to authorized users is a [before filter][].  This not the only way to accomplish this and not necessarily the best way in this case.  But it's one tool to implement this kind of pre-route logic.  For an application this simple, it's ok to put the authorization logic in the route handler itself.
 
-For an app this simple, it's ok to put it in the route itself.
 
-## Resources
+## Conclusion
+Think about the apps we use everyday:  Twitter, Instagram, GitHub, etc.  User registration, authentication, and authorization are key aspects in these applications.  These are skills that we must have.  We've gotten an introduction to these concepts in this challenge.  Moving forward at Dev Bootcamp we'll receive more practice with them as we'll continue building user authentication into our applications.
 
-* [Sinatra sessions][sessions]
-* [HTTP cookies][]
-* [Sinatra sessions][using sessions]
-* [Sinatra before filter][before filter]
 
 [sessions]: http://www.sinatrarb.com/faq.html#sessions
 [HTTP cookies]: http://en.wikipedia.org/wiki/HTTP_cookie
