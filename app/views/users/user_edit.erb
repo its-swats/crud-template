@@ -1,7 +1,14 @@
 <h1>Create User</h1>
+<%if flash[:errors] %>
+	<ul>
+	<% flash[:errors].each do |error| %>
+		<li><%=error%></li>
+	<%end %>
+	</ul>
+<%end %>
 <form action='/users/<%=current_user.id%>' method='POST' name='signup_form'>
 	<input type='hidden' name='_method' value='PUT'>
 	<input type='text' placeholder='Username' name='username' value='<%=current_user.username%>'>
 	<input type='text' placeholder='Email' name='email' value='<%=current_user.email%>'>
-	<input type='submit' value='register'>
+	<input type='submit' value='Edit'>
 </form>
