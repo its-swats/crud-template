@@ -10,8 +10,8 @@ get '/users/new' do
 end
 
 #create new user
-post '/users/' do 
-	user = User.new(params[:username], params[:email])
+post '/users' do 
+	user = User.new(username: params[:username], email: params[:email])
 	user.password = params[:password]
 	if user.save
 		session[:id] = user.id
@@ -35,7 +35,13 @@ end
 #submit user edit
 put '/users/:id' do 
 	user = user.find(params[:id])
-	user.update(params)
+	user.username = params[:username]
+	user.email = params[:email]
+	if user.save
+		redirect '/'
+	else
+		status 400
+	end
 end
 
 #delete user
