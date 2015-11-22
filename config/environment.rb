@@ -3,6 +3,7 @@
 #      http://stackoverflow.com/questions/7243486/why-do-you-need-require-bundler-setup
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
 
+
 require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 
 # Require gems we care about
@@ -14,7 +15,8 @@ require 'pathname'
 require 'pg'
 require 'active_record'
 require 'logger'
-
+require 'rack-flash'
+require 'bcrypt'
 require 'sinatra'
 require "sinatra/reloader" if development?
 
