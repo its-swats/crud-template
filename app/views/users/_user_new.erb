@@ -1,14 +1,9 @@
+<div class="create_user">
 <h1>Create User</h1>
-<%if flash[:errors] %>
-	<ul>
-	<% flash[:errors].each do |error| %>
-		<li><%=error%></li>
-	<%end %>
-	</ul>
-<%end %>
 <form action='/users' method='POST' name='signup_form'>
 	<input type='text' placeholder='Username' name='username'>
 	<input type='text' placeholder='Email' name='email'>
 	<input type='password' placeholder='Password' name='password'>
-	<input type='submit' value='register'>
+	<input type='submit' value='Register'>
 </form>
+</div>

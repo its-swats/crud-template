@@ -20,9 +20,14 @@ end
 
 #delete session
 delete '/sessions/:id' do
-	current_user = nil
-	session[:id] = nil
-	redirect '/'
+	if request.xhr?
+		current_user = nil
+		session[:id] = nil
+		redirect '/'
+	else
+		status 403
+		redirect '/'
+	end
 end
 
 

@@ -6,7 +6,12 @@ end
 
 #new user form
 get '/users/new' do 
-	erb :'/users/user_new'
+	if request.xhr?
+		erb :'/users/_user_new'
+	else
+		status 403
+		redirect '/'
+	end
 end
 
 #create new user
@@ -25,8 +30,13 @@ end
 
 #get edit page
 get '/users/:id/edit' do
-	@user = User.find(params[:id])
-	erb :'/users/user_edit'
+	if request.xhr?
+		@user = User.find(params[:id])
+		erb :'/users/_user_edit'
+	else
+		status 403
+		redirect '/'
+	end
 end
 
 #show a user
