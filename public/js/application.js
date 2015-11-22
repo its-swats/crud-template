@@ -12,6 +12,7 @@ var formHandler = function() {
 			url: targetUrl
 		});
 		response.done(function(data) {
+			clearForms();
 			$('.show_form').append(data);
 		});
 	});
@@ -32,4 +33,8 @@ var logoutHandler = function() {
 			console.log('Logout Failed');
 		});
 	});
+}
+
+var clearForms = function () { 
+	$('.show_form').empty();
 }

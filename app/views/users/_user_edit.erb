@@ -1,4 +1,4 @@
-<h1>Create User</h1>
+<h1>Edit User</h1>
 <form action='/users/<%=current_user.id%>' method='POST' name='signup_form'>
 	<input type='hidden' name='_method' value='PUT'>
 	<input type='text' placeholder='Username' name='username' value='<%=current_user.username%>'>
