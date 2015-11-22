@@ -18,6 +18,8 @@ post '/users' do
 		redirect '/'
 	else
 		status 400
+		flash[:errors] = user.errors.full_messages
+		redirect '/users/new'
 	end
 end
 
@@ -34,8 +36,15 @@ end
 
 #submit user edit
 put '/users/:id' do 
-	User.find(params[:id]).update(username: params[:username], email: params[:email])
-	redirect '/'
+	user = User.find(params[:id])
+	user.username = params[:username]
+	user.email = params[:email]
+	if user.save
+		redirect '/'
+	else
+		flash[:errors] = user.errors.full_messages
+		redirect "/users/#{current_user.id}/edit"
+	end
 end
 
 #delete user
