@@ -1,16 +1,12 @@
 #show all users
 get '/users' do
 	@users = User.all
-end
-
-#show a user
-get '/users/:id' do
-	@user = User.find(params[:id])
+	erb :'/users/user_index'
 end
 
 #new user form
 get '/users/new' do 
-	erb :'/users/new'
+	erb :'/users/user_new'
 end
 
 #create new user
@@ -28,7 +24,12 @@ end
 #get edit page
 get '/users/:id/edit' do
 	@user = User.find(params[:id])
-	erb '/users/edit'
+	erb :'/users/user_edit'
+end
+
+#show a user
+get '/users/:id' do
+	@user = User.find(params[:id])
 end
 
 #submit user edit
@@ -41,6 +42,7 @@ end
 delete '/users/:id' do 
 	User.find(params[:id]).destroy
 	session[:id] = nil
+	current_user = nil
 end
 
 
