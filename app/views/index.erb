@@ -1,23 +1,13 @@
 <div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, world!</p>
-
-  <table>
-    <tr>
-      <th>File Description</th>
-      <th>File Location</th>
-    </tr>
-    <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-  </table>
+  <%if current_user  %>
+    <h1>Logged in as <%=@current_user.username %></h1>
+    <a href='/users/<%=current_user.id%>/edit'>Edit User</a>
+    <form action='/sessions/<%=current_user.id%>' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+    	<input type='submit' value='Log Out'>
+    </form>
+  <%else  %>
+  <a href='/users/new'>Create User</a>
+  <a href='/sessions/new'>Log In</a>
+  <%end %>
 </div>
