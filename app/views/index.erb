@@ -1,8 +1,13 @@
 <div class="container">
-  <%if @current_user  %>
+  <%if current_user  %>
     <h1>Logged in as <%=@current_user.username %></h1>
     <a href='/users/<%=current_user.id%>/edit'>Edit User</a>
-  <%end  %>
+    <form action='/sessions/<%=current_user.id%>' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+    	<input type='submit' value='Log Out'>
+    </form>
+  <%else  %>
   <a href='/users/new'>Create User</a>
   <a href='/sessions/new'>Log In</a>
+  <%end %>
 </div>

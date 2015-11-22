@@ -34,14 +34,8 @@ end
 
 #submit user edit
 put '/users/:id' do 
-	user = user.find(params[:id])
-	user.username = params[:username]
-	user.email = params[:email]
-	if user.save
-		redirect '/'
-	else
-		status 400
-	end
+	User.find(params[:id]).update(username: params[:username], email: params[:email])
+	redirect '/'
 end
 
 #delete user
