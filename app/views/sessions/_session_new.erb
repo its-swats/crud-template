@@ -1,13 +1,5 @@
 <h1>Log In</h1>
-<%if flash[:errors] %>
-	<ul>
-	<% flash[:errors].each do |error| %>
-		<li><%=error%></li>
-	<%end %>
-	</ul>
-<%end %>
-<div class='container'>
-	<form action='/sessions' method='post' name='login_form'>
+<form action='/sessions' method='post' name='login_form'>
 	<input type='text' placeholder='Email Address' name='email'>
 	<input type='password' placeholder='Password' name='password'>
 	<input type='submit'>

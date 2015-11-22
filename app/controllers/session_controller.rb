@@ -1,6 +1,11 @@
 #create new session page
 get '/sessions/new' do 
-	erb :'/sessions/session_new'
+	if request.xhr?
+		erb :'/sessions/_session_new', layout: false
+	else
+		status 403
+		redirect '/'
+	end
 end
 
 

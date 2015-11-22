@@ -7,7 +7,7 @@ end
 #new user form
 get '/users/new' do 
 	if request.xhr?
-		erb :'/users/_user_new'
+		erb :'/users/_user_new', layout: false
 	else
 		status 403
 		redirect '/'
@@ -32,7 +32,7 @@ end
 get '/users/:id/edit' do
 	if request.xhr?
 		@user = User.find(params[:id])
-		erb :'/users/_user_edit'
+		erb :'/users/_user_edit', layout: false
 	else
 		status 403
 		redirect '/'

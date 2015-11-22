@@ -2,6 +2,7 @@ $(document).ready(function() {
 	showNewUserForm();
 	showEditUserForm();
 	logoutHandler();
+	showLoginForm();
 });
 
 var showNewUserForm = function() {
@@ -26,6 +27,19 @@ var showEditUserForm = function() {
 			url: '/users/' + userId + '/edit'
 		});
 		response.done(function(data){ 
+			$('.show_form').append(data);
+		});
+	});
+}
+
+var showLoginForm = function() { 
+	$('body').on('click', '#show_log_in_form', function(event) { 
+		event.preventDefault(); 
+		var response = $.ajax({
+			method: 'GET',
+			url: '/sessions/new'
+		});
+		response.done(function(data){
 			$('.show_form').append(data);
 		});
 	});
