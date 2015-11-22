@@ -11,6 +11,7 @@ post '/sessions' do
 		session[:id] = user.id
 		redirect '/'
 	else
+		flash[:errors] = ['Incorrect Username or Password']
 		status 400
 		redirect '/sessions/new'
 	end
@@ -21,6 +22,7 @@ end
 delete '/sessions/:id' do
 	current_user = nil
 	session[:id] = nil
+	redirect '/'
 end
 
 
