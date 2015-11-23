@@ -22,9 +22,15 @@ post '/users' do
 		session[:id] = user.id
 		redirect '/'
 	else
-		status 400
 		flash[:errors] = user.errors.full_messages
 		redirect '/users/new'
+	end
+end
+
+#auth for users edit
+before '/users/:id/edit' do 
+	unless current_user.id == params[:id].to_i
+		flash[:errors] = ['You are not permitted to access that page']
 	end
 end
 
@@ -34,7 +40,6 @@ get '/users/:id/edit' do
 		@user = User.find(params[:id])
 		erb :'/users/_user_edit', layout: false
 	else
-		status 403
 		redirect '/'
 	end
 end

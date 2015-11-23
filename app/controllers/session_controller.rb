@@ -3,7 +3,6 @@ get '/sessions/new' do
 	if request.xhr?
 		erb :'/sessions/_session_new', layout: false
 	else
-		status 403
 		redirect '/'
 	end
 end
@@ -17,7 +16,6 @@ post '/sessions' do
 		redirect '/'
 	else
 		flash[:errors] = ['Incorrect Username or Password']
-		status 400
 		redirect '/sessions/new'
 	end
 end
@@ -30,7 +28,6 @@ delete '/sessions/:id' do
 		session[:id] = nil
 		redirect '/'
 	else
-		status 403
 		redirect '/'
 	end
 end
