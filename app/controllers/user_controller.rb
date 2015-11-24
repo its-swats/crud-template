@@ -5,7 +5,7 @@ get '/users' do
 end
 
 #new user form
-get '/users/new' do 
+get '/users/new' do
 	if request.xhr?
 		erb :'/users/_user_new', layout: false
 	else
@@ -15,7 +15,7 @@ get '/users/new' do
 end
 
 #create new user
-post '/users' do 
+post '/users' do
 	user = User.new(username: params[:username], email: params[:email])
 	user.password = params[:password]
 	if user.save
@@ -28,7 +28,7 @@ post '/users' do
 end
 
 #auth for users edit
-before '/users/:id/edit' do 
+before '/users/:id/edit' do
 	unless current_user.id == params[:id].to_i
 		flash[:errors] = ['You are not permitted to access that page']
 	end
@@ -47,10 +47,11 @@ end
 #show a user
 get '/users/:id' do
 	@user = User.find(params[:id])
+	erb :'/users/_user_show', layout: false
 end
 
 #submit user edit
-put '/users/:id' do 
+put '/users/:id' do
 	user = User.find(params[:id])
 	user.username = params[:username]
 	user.email = params[:email]
@@ -63,7 +64,7 @@ put '/users/:id' do
 end
 
 #delete user
-delete '/users/:id' do 
+delete '/users/:id' do
 	User.find(params[:id]).destroy
 	session[:id] = nil
 	current_user = nil

@@ -10,7 +10,7 @@
 
 <div class="container">
   <%if current_user  %>
-    <h1>Logged in as <%=@current_user.username %></h1>
+    <h1>Logged in as <a class='popup_form' href='/users/<%=current_user.id%>'><%=@current_user.username %></h1></a>
     <a class='popup_form' id='show_edit_user_form' href='/users/<%=current_user.id%>/edit'>Edit User</a>
     <a id='log_out' href='/sessions/<%=current_user.id%>'>Log Out</a>
   <%else  %>
