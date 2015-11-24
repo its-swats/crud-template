@@ -16,14 +16,19 @@ end
 
 #create new user
 post '/users' do
-	user = User.new(username: params[:username], email: params[:email])
-	user.password = params[:password]
-	if user.save
-		session[:id] = user.id
-		redirect '/'
+	if confirm_password
+		user = User.new(username: params[:username], email: params[:email])
+		user.password = params[:password]
+		if user.save
+			session[:id] = user.id
+			redirect '/'
+		else
+			flash[:errors] = user.errors.full_messages
+			redirect '/users/new'
+		end
 	else
-		flash[:errors] = user.errors.full_messages
-		redirect '/users/new'
+		flash[:errors] = ['Your passwords did not match']
+		redirect 'users/new'
 	end
 end
 
@@ -70,4 +75,9 @@ delete '/users/:id' do
 	current_user = nil
 end
 
+private
 
+def confirm_password
+	return true if params[:password] == params[:confirm]
+	false
+end
