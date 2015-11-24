@@ -81,3 +81,4 @@ def confirm_password
 	return true if params[:password] == params[:confirm]
 	false
 end
+
