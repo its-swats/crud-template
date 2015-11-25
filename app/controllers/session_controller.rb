@@ -31,13 +31,3 @@ delete '/sessions/:id' do
 		redirect '/'
 	end
 end
-
-get '/sessions/silly' do
-	thing = params[:thing1].upcase
-end
-
-private
-
-def do_json_things(args)
-
-end

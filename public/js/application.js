@@ -2,7 +2,6 @@ $(document).ready(function() {
 	formHandler();
 	logoutHandler();
 	deleteAccountHandler();
-	testThingHandler();
 });
 
 var formHandler = function() {
@@ -55,18 +54,3 @@ var clearForms = function () {
 	$('.show_form').empty();
 }
 
-var testThingHandler = function(){
-	$('#thing').submit(function(event) {
-		event.preventDefault()
-		var data = $(this).serialize();
-		var response = $.ajax({
-			type: 'GET',
-			url: '/sessions/silly',
-			data: data,
-			dataType: 'json'
-		})
-		response.done(function (data) {
-			$('body').append('<p>' + data.thing1 + '</p>')
-		});
-	});
-}
